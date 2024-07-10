@@ -1,5 +1,7 @@
-export interface User {
-uid: string,
-name: string,
-email: string
+export class User {
+  constructor(
+    public uid: string,
+    public name: string,
+    public email: string
+  ) {}
 }
