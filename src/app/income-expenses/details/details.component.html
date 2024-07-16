@@ -1,32 +1,41 @@
 <div class="row">
   <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Detalle de ingreso egreso</h4>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Detalle de ingreso egreso</h4>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Descripción</th>
-                <th>Monto</th>
-                <th>Tipo</th>
-                <th></th>
-              </tr>
-            </thead>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Monto</th>
+              <th>Tipo</th>
+              <th></th>
+            </tr>
+          </thead>
 
-            <tbody>
-              <tr>
-                <td>Descripción</td>
-                <td>Monto</td>
-                <td>Tipo</td>
-                <td>acciones</td>
-              </tr>
-            </tbody>
-
-          </table>
-
-
-        </div>
+          <tbody>
+            <tr *ngFor="let item of incomeOutcome">
+              <td>{{ item.description | titlecase }}</td>
+              <td>{{ item.amount | currency }}</td>
+              <td
+                [class.text-success]="item.type === 'ingreso'"
+                [class.text-danger]="item.type === 'egreso'"
+              >
+                {{ item.type }}
+              </td>
+              <td>
+                <button
+                  (click)="deleteItem( item.uid )"
+                  type="button" class="btn btn-danger">
+                  <i class="fa fa-trash"></i>
+                  Borrar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
   </div>
 </div>

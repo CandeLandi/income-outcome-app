@@ -6,6 +6,7 @@ import { User } from '../models/user.model';
 import { AppState } from '../app.reducer';
 import { Store } from '@ngrx/store';7
 import * as authActions from '../auth/auth.actions'
+import * as incomeOutcomeActions from '../income-expenses/income-outcome.actions'
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,14 @@ import * as authActions from '../auth/auth.actions'
 
 export class AuthService {
 
+  private  _user!: User | null ;
 
   userSubscription!: Subscription;
+
+  get user(){
+    return this._user;
+  }
+
 
   constructor(
     private firestore: AngularFirestore,
@@ -29,14 +36,19 @@ export class AuthService {
         //existe
         this.userSubscription = this.firestore.doc(`${ fUser.uid }/user`).valueChanges()
         .subscribe( (firestoreUser: any) => {
+
           console.log({ firestoreUser })
+
           const user = User.fromFirebase( firestoreUser );
-          this.store.dispatch( authActions.setUser({ user }))
+          this._user = user;
+          this.store.dispatch( authActions.setUser( {user} ))
         })
       } else {
         //no existe
+        this._user = null;
         this.userSubscription.unsubscribe();
         this.store.dispatch(authActions.unSetUser())
+        this.store.dispatch( incomeOutcomeActions.unSetItems())
       }
     });
   }

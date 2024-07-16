@@ -16,7 +16,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { IncomeExpensesComponent } from './income-expenses/income-expenses.component';
+import { IncomeOutcomeComponent } from './income-expenses/income-outcome.component';
 import { DetailsComponent } from './income-expenses/details/details.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -34,7 +34,7 @@ import { appReducers } from './app.reducer';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    IncomeExpensesComponent,
+    IncomeOutcomeComponent,
     DetailsComponent,
     FooterComponent,
     NavbarComponent,
