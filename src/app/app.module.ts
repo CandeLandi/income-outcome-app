@@ -3,13 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 //Ngrx
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //AngularFire
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +25,9 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { appReducers } from './app.reducer';
-
+import { OrderIncomePipePipe } from './pipes/order-income.pipe';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts'
 
 @NgModule({
   declarations: [
@@ -39,12 +40,15 @@ import { appReducers } from './app.reducer';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    OrderIncomePipePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    BaseChartDirective,
+    NgxChartsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
@@ -52,10 +56,10 @@ import { appReducers } from './app.reducer';
     StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
-    })
+      logOnly: environment.production,
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [provideCharts(withDefaultRegisterables()),],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

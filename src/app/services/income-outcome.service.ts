@@ -15,6 +15,7 @@ export class IncomeOutcomeService {
 
   createIncomeOutcome( incomeOutcome: IncomeOutcome ){
     const uid = this.authService.user?.uid;
+    delete incomeOutcome.uid;
 
    return this.firestore.doc(`${ uid }/income-outcome`)
     .collection('items')
@@ -36,6 +37,14 @@ export class IncomeOutcomeService {
       )
       )
     )
+  }
+
+
+  deleteIncomeOutcome( uidItem: string ){
+
+    const uid = this.authService.user?.uid;
+    return this.firestore.doc(`${ uid }/income-outcome/items/${ uidItem }`).delete();
+
   }
 
 }
