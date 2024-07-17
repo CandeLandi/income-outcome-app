@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/income-expenses-app/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
