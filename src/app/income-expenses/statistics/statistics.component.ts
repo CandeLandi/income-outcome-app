@@ -3,10 +3,12 @@ import { AppState } from '../../app.reducer';
 import { Store } from '@ngrx/store';
 import { IncomeOutcome } from '../../models/income-outcome.model';
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { AppStateWithIncome } from '../income-outcome.reducer';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
+  styleUrl: './statistics.style.css'
 })
 export class StatisticsComponent implements OnInit {
   income: number = 0;
@@ -25,11 +27,11 @@ export class StatisticsComponent implements OnInit {
 
   public doughnutChartType: ChartType = 'doughnut';
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppStateWithIncome>) {}
 
   ngOnInit(): void {
     this.store
-      .select('incomeOutcome')
+      .select('IncomeOutcome')
       .subscribe(({ items }) => this.generateStatistic(items));
   }
 

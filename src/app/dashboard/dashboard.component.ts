@@ -4,7 +4,6 @@ import { filter, Subscription } from 'rxjs';
 import { AppState } from '../app.reducer';
 import { IncomeOutcomeService } from '../services/income-outcome.service';
 import * as incomeOutcomeActions from '../income-expenses/income-outcome.actions';
-import { IncomeOutcome } from '../models/income-outcome.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -52,7 +51,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   } */
 
   ngOnDestroy(): void {
-    this.incomeSubs.unsubscribe();
-    this.userSubs.unsubscribe();
+    this.incomeSubs?.unsubscribe();
+    this.userSubs?.unsubscribe();
   }
 }

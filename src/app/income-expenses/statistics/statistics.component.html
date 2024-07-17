@@ -72,12 +72,12 @@
     </div>
   </div>
 
-  <div class="col-12 p-5" *ngIf="income > 0 || outcome > 0">
+  <div class="col-12 mt-3" *ngIf="income > 0 || outcome > 0">
     <div class="card card-statistics">
       <div class="card-body">
         <h1 class="card-title">Gráfica</h1>
 
-        <div chartType="doughnut">
+        <div class="chart-container"  chartType="doughnut">
           <canvas
             baseChart
             [data]="doughnutChartData"
